@@ -54,6 +54,12 @@ const pageData = {
     { name: "Ocean Explorer", price: "Rp 350.000", desc: "Tiket masuk, set alat snorkeling, pemandu lokal, tiket perahu glass-bottom, dan makan siang.", icon: "Waves", img: "./galeri-ocean-explorer.webp" },
     { name: "Sunset BBQ Camp", price: "Rp 500.000", desc: "Akses camping ground (termasuk tenda 2 pax), paket seafood BBQ, dan area api unggun.", icon: "Anchor", img: "./galeri-sunset-camp.webp" }
   ],
+  galleryPhotos: [
+    { src: "./galeri-beach-pass.webp", title: "Pantai Pasir Putih & Laut Jernih", tag: "Beach Pass" },
+    { src: "./galeri-relax-chill.webp", title: "Private Gazebo & Kelapa Muda Segar", tag: "Relax & Chill" },
+    { src: "./galeri-ocean-explorer.webp", title: "Snorkeling Terumbu Karang & Penyu", tag: "Ocean Explorer" },
+    { src: "./galeri-sunset-camp.webp", title: "Sunset BBQ Camping & Api Unggun", tag: "Sunset BBQ Camp" }
+  ],
   faqs: [
     { q: "Jam berapa operasional pantai Oceana Vibe?", a: "Kawasan pantai kami buka setiap hari mulai pukul 06.00 WIB pagi hingga 20.00 WIB malam. Khusus paket Sunset & Camping buka 24 jam." },
     { q: "Apakah diperbolehkan membawa makanan dari luar?", a: "Tentu diperbolehkan. Namun, kami memberlakukan aturan bebas plastik sekali pakai dan setiap pengunjung wajib menjaga kebersihan pantai." },
@@ -297,6 +303,38 @@ export default function App() {
           </div>
         </section>
 
+        {/* GALERI FOTO & SPOT EKSKLUSIF */}
+        <section className="py-12 px-6 bg-[#fffbeb] border-t border-amber-100">
+          <div className="mb-6 flex flex-col items-start">
+            <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#ffedd5] text-[#ea580c] rounded-full text-xs font-bold uppercase tracking-wider mb-2">
+              <Camera size={14} /> Galeri Wisata
+            </div>
+            <h2 className="text-2xl font-extrabold text-[#451a03]">Pesona Pantai & Fasilitas</h2>
+            <p className="text-amber-900/60 text-xs mt-1">Ketuk foto untuk melihat dalam resolusi penuh.</p>
+          </div>
+
+          <div className="flex overflow-x-auto snap-x snap-mandatory gap-4 pb-4 no-scrollbar">
+            {pageData.galleryPhotos.map((item, idx) => (
+              <div 
+                key={idx}
+                onClick={() => openLightbox(pageData.galleryPhotos.map(p => p.src), idx)}
+                className="snap-center shrink-0 w-[260px] aspect-[4/3] rounded-3xl overflow-hidden cursor-pointer relative group border border-amber-200 shadow-sm bg-white"
+              >
+                <img 
+                  src={item.src} 
+                  alt={item.title} 
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent flex flex-col justify-end p-4">
+                  <span className="text-[11px] font-bold text-[#fde047] uppercase tracking-wider mb-0.5">{item.tag}</span>
+                  <p className="text-white text-xs font-semibold leading-snug drop-shadow-sm">{item.title}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
         {/* KATALOG & HARGA SECTION */}
         <section className="py-12 px-6 bg-white">
           <div className="text-center mb-8">
@@ -306,33 +344,17 @@ export default function App() {
 
           <div className="flex overflow-x-auto snap-x snap-mandatory gap-4 pb-6 no-scrollbar">
             {pageData.packages.map((pkg, idx) => (
-              <div key={idx} className="snap-center shrink-0 w-[280px] bg-[#fffbeb] rounded-3xl shadow-sm border border-amber-100 overflow-hidden hover:shadow-md transition-shadow flex flex-col">
-                <div 
-                  className="w-full h-44 overflow-hidden relative cursor-pointer group"
-                  onClick={() => openLightbox(pageData.packages.map(p => p.img), idx)}
-                  title="Klik untuk perbesar foto"
-                >
-                  <img 
-                    src={pkg.img} 
-                    alt={pkg.name} 
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
-                  />
-                  <div className="absolute bottom-2 right-2 bg-black/40 backdrop-blur-sm p-1.5 rounded-lg text-white opacity-80 group-hover:opacity-100 transition-opacity">
-                    <Camera size={14} />
+              <div key={idx} className="snap-center shrink-0 w-[280px] bg-[#fffbeb] rounded-3xl shadow-sm border border-amber-100 p-6 hover:shadow-md transition-shadow flex flex-col gap-3">
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 shrink-0 bg-white rounded-2xl flex items-center justify-center border border-amber-200 shadow-sm">
+                    {renderIcon(pkg.icon)}
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-[#451a03] text-[16px] leading-tight mb-1">{pkg.name}</h3>
+                    <div className="text-[#ea580c] font-extrabold text-lg">{pkg.price} <span className="text-xs font-medium text-amber-700/60">/ pax</span></div>
                   </div>
                 </div>
-                <div className="p-5 flex flex-col gap-3 flex-1">
-                  <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 shrink-0 bg-white rounded-2xl flex items-center justify-center border border-amber-200 shadow-sm">
-                      {renderIcon(pkg.icon)}
-                    </div>
-                    <div>
-                      <h3 className="font-bold text-[#451a03] text-[16px] leading-tight mb-1">{pkg.name}</h3>
-                      <div className="text-[#ea580c] font-extrabold text-lg">{pkg.price} <span className="text-xs font-medium text-amber-700/60">/ pax</span></div>
-                    </div>
-                  </div>
-                  <p className="text-sm text-amber-900/80 leading-relaxed mt-1">{pkg.desc}</p>
-                </div>
+                <p className="text-sm text-amber-900/80 leading-relaxed mt-1">{pkg.desc}</p>
               </div>
             ))}
           </div>
