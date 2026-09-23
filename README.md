@@ -35,6 +35,7 @@ wisata pantai/
 ├── public/
 │   ├── logo-oceana-vibe.png                         # Logo profil resmi Oceana Vibe
 │   ├── hero-beach-sunset.jpg                        # Foto banner sunset pantai
+│   ├── gambarSEO.png                                # Foto kartu preview SEO & WhatsApp
 │   ├── galeri-beach-pass.webp                       # Foto pasir putih & air laut kristal
 │   ├── galeri-relax-chill.webp                      # Foto gazebo, kursi jemur & kelapa muda
 │   ├── galeri-ocean-explorer.webp                   # Foto snorkeling terumbu karang & penyu
@@ -54,6 +55,7 @@ wisata pantai/
 ├── postcss.config.js                                # Konfigurasi PostCSS
 ├── logo-oceana-vibe.png                             # Asset logo profil
 ├── hero-beach-sunset.jpg                            # Asset foto hero sunset
+├── gambarSEO.png                                    # Asset foto kartu preview SEO & WhatsApp
 ├── galeri-*.webp                                    # 4 Foto fasilitas & aktivitas pantai
 └── oceana_vibe_beach_tour.tsx                      # Source code komponen asli
 ```
