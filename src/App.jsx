@@ -342,27 +342,22 @@ export default function App() {
             <p className="text-amber-900/60 text-sm">Pilih aktivitas liburan sesuai gaya Anda.</p>
           </div>
 
-          <div className="flex flex-col gap-3.5">
+          <div className="flex flex-col gap-4 w-full">
             {pageData.packages.map((pkg, idx) => (
               <div 
                 key={idx} 
-                className="w-full bg-[#fffbeb] rounded-2xl p-5 border border-amber-100 shadow-sm hover:border-[#ea580c]/40 hover:shadow-md transition-all"
+                className="w-full bg-[#fffbeb] rounded-3xl shadow-sm border border-amber-100 p-6 hover:shadow-md transition-shadow flex flex-col gap-3"
               >
-                <div className="flex items-start justify-between gap-3 mb-2.5">
-                  <div className="flex items-center gap-3">
-                    <div className="w-11 h-11 shrink-0 bg-white rounded-xl flex items-center justify-center border border-amber-200 shadow-sm">
-                      {renderIcon(pkg.icon)}
-                    </div>
-                    <h3 className="font-bold text-[#451a03] text-[15px] leading-tight">{pkg.name}</h3>
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 shrink-0 bg-white rounded-2xl flex items-center justify-center border border-amber-200 shadow-sm">
+                    {renderIcon(pkg.icon)}
                   </div>
-                  <div className="text-right shrink-0">
-                    <span className="text-[#ea580c] font-extrabold text-[17px] whitespace-nowrap block">{pkg.price}</span>
-                    <span className="text-[11px] font-medium text-amber-700/60">/ pax</span>
+                  <div>
+                    <h3 className="font-bold text-[#451a03] text-[16px] leading-tight mb-1">{pkg.name}</h3>
+                    <div className="text-[#ea580c] font-extrabold text-lg">{pkg.price} <span className="text-xs font-medium text-amber-700/60">/ pax</span></div>
                   </div>
                 </div>
-                <p className="text-xs text-amber-900/75 leading-relaxed bg-white/60 p-3 rounded-xl border border-amber-50">
-                  {pkg.desc}
-                </p>
+                <p className="text-sm text-amber-900/80 leading-relaxed mt-1">{pkg.desc}</p>
               </div>
             ))}
           </div>
